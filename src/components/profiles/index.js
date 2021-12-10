@@ -1,55 +1,27 @@
-import PropTypes from 'prop-types'
-import {
-  Container,
-  Title,
-  List,
-  Item,
-  Picture,
-  Name
-} from './styles/profiles'
+import React from 'react';
+import { Container, Title, List, Item, Picture, Name } from './styles/profiles';
 
-const Profiles = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-)
-
-Profiles.Title = ({ children, ...restProps }) => (
-  <Title {...restProps}>{children}</Title>
-)
-
-Profiles.List = ({ children, ...restProps }) => (
-  <List {...restProps}>{children}</List>
-)
-
-Profiles.User = ({ children, ...restProps }) => (
-  <Item {...restProps}>{children}</Item>
-)
-
-Profiles.Picture = ({ src, ...restProps }) => (
-  <Picture {...restProps} src={src ? `/images/users/${src}.png` : '/images/misc/loading.gif'} />
-)
-
-Profiles.Name = ({ children, ...restProps }) => (
-  <Name {...restProps}>{children}</Name>
-)
-
-Profiles.propTypes = {
-  children: PropTypes.any.isRequired
+export default function Profiles({ children, ...restProps }) {
+    return <Container {...restProps}>{children}</Container>;
 }
 
-Profiles.Title.propTypes = {
-  children: PropTypes.any.isRequired
+Profiles.Title = function ProfilesTitle({ children, ...restProps }) {
+    return <Title {...restProps}>{children}</Title>;
 }
 
-Profiles.List.propTypes = {
-  children: PropTypes.any.isRequired
+Profiles.List = function ProfilesList({ children, ...restProps }) {
+    return <List {...restProps}>{children}</List>;
 }
 
-Profiles.User.propTypes = {
-  children: PropTypes.any.isRequired
+Profiles.User = function ProfilesUser({ children, ...restProps }) {
+    return <Item {...restProps}>{children}</Item>;
 }
 
-Profiles.Picture.propTypes = {
-  src: PropTypes.string.isRequired
+Profiles.Picture = function ProfilesPicture({ src, ...restProps }) {
+    return <Picture {...restProps} src={src ? `/images/users/${src}.png` :
+    '/images/misc/loading.gif'} />;
 }
 
-export default Profiles
+Profiles.Name = function ProfilesName({ children, ...restProps }) {
+    return <Name {...restProps}>{children}</Name>;
+}

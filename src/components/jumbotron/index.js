@@ -1,66 +1,30 @@
-import PropTypes from 'prop-types'
-import {
-  Container,
-  Item,
-  Inner,
-  Title,
-  SubTitle,
-  Image,
-  Pane
-} from './styles/jumbotron'
+import React from 'react';
+import { Container, Item, Inner, Title, SubTitle, Image, Pane } from './styles/jumbotron';
 
-const Jumbotron = ({ children, direction = 'row', ...restProps }) => (
-  <Item {...restProps}>
-    <Inner direction={direction}>{children}</Inner>
-  </Item>
-)
-
-Jumbotron.Container = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-)
-
-Jumbotron.Pane = ({ children, ...restProps }) => (
-  <Pane {...restProps}>{children}</Pane>
-)
-
-Jumbotron.Title = ({ children, ...restProps }) => (
-  <Title {...restProps}>{children}</Title>
-)
-
-Jumbotron.SubTitle = ({ children, ...restProps }) => (
-  <SubTitle {...restProps}>{children}</SubTitle>
-)
-
-Jumbotron.Image = ({ src, alt, ...restProps }) => (
-  <Image src={src} alt={alt} {...restProps} />
-)
-
-Jumbotron.propTypes = {
-  children: PropTypes.any.isRequired,
-  direction: PropTypes.oneOf([
-    'row', 'column', 'row-reverse', 'column-reverse'
-  ])
+export default function Jumbotron({ children, direction = 'row', ...restProps }) {
+    return (
+        <Item {...restProps}>
+            <Inner direction={direction}>{children}</Inner>
+        </Item>
+    )
 }
 
-Jumbotron.Container.propTypes = {
-  children: PropTypes.any.isRequired
+Jumbotron.Container = function JumbotronContainer({ children, ...restProps }) {
+    return <Container {...restProps}>{children}</Container>;
 }
 
-Jumbotron.Pane.propTypes = {
-  children: PropTypes.any.isRequired
+Jumbotron.Title = function JumbotronTitle({ children, ...restProps }) {
+    return <Title {...restProps}>{children}</Title>;
 }
 
-Jumbotron.Title.propTypes = {
-  children: PropTypes.any.isRequired
+Jumbotron.SubTitle = function JumbotronSubTitle({ children, ...restProps }) {
+    return <SubTitle {...restProps}>{children}</SubTitle>;
 }
 
-Jumbotron.SubTitle.propTypes = {
-  children: PropTypes.any.isRequired
+Jumbotron.Pane = function JumbotronPane({ children, ...restProps }) {
+    return <Pane {...restProps}>{children}</Pane>;
 }
 
-Jumbotron.Image.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
+Jumbotron.Image = function JumbotronImage({ ...restProps }) {
+    return <Image {...restProps } />;
 }
-
-export default Jumbotron

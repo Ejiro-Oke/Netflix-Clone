@@ -1,164 +1,98 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
-import {
-  Background,
-  Container,
-  LogoLink,
-  ButtonLink,
-  Logo,
-  Link,
-  Group,
-  Text,
-  Feature,
-  FeatureCallOut,
-  PlayButton,
-  Search,
-  SearchIcon,
-  SearchInput,
-  Profile,
-  Picture,
-  Dropdown
-} from './styles/header'
+import React, { useState } from 'react';
+import { Link as ReachRouterLink } from 'react-router-dom';
+import { 
+    Group, 
+    Background, 
+    Link, 
+    Text, 
+    Container, 
+    Logo, 
+    ButtonLink,
+    Feature,
+    FeatureCallOut,
+    PlayButton,
+    Search,
+    SearchIcon,
+    SearchInput,
+    Profile,
+    Picture,
+    Dropdown
+} from './styles/header';
 
-const Header = ({ dontShowOnSmallViewPort = false, bg = true, src, children, ...restProps }) => {
-  return bg ? <Background src={src} dontShowOnSmallViewPort={dontShowOnSmallViewPort} bg={bg} {...restProps}>{children}</Background> : children
+export default function Header({ bg = true, children, ...restProps }) {
+    return bg ? <Background {...restProps}>{children}</Background> : children;
 }
 
-Header.Frame = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-)
+Header.Frame = function HeaderFrame({ children, ...restProps }) {
+    return <Container {...restProps}>{children}</Container>;
+}
 
-Header.Group = ({ children, ...restProps }) => (
-  <Group {...restProps}>{children}</Group>
-)
-
-Header.Logo = ({ to, src, alt, ...restProps }) => (
-  <LogoLink to={to}>
-    <Logo src={src} alt={alt} {...restProps} />
-  </LogoLink>
-)
-
-Header.ButtonLink = ({ to, children, ...restProps }) => (
-  <ButtonLink to={to} {...restProps}>{children}</ButtonLink>
-)
-
-Header.Link = ({ active = false, children, ...restProps }) => (
-  <Link active={active} {...restProps}>{children}</Link>
-)
-
-Header.Text = ({ children, ...restProps }) => (
-  <Text {...restProps}>{children}</Text>
-)
-
-Header.Feature = ({ children, ...restProps }) => (
-  <Feature {...restProps}>{children}</Feature>
-)
-
-Header.FeatureCallOut = ({ children, ...restProps }) => (
-  <FeatureCallOut {...restProps}>{children}</FeatureCallOut>
-)
-
-Header.PlayButton = ({ children, ...restProps }) => (
-  <PlayButton {...restProps}>{children}</PlayButton>
-)
+Header.Group = function HeaderGroup({ children, ...restProps }) {
+    return <Group {...restProps}>{children}</Group>;
+}
 
 Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps }) {
-  const [searchActive, setSearchActive] = useState(false)
-
-  return (
-    <Search {...restProps}>
-      <SearchIcon onClick={() => setSearchActive(!searchActive)}>
-        <img src="/images/icons/search.png" alt="Search" />
-      </SearchIcon>
-      <SearchInput
-        value={searchTerm}
-        onChange={({ target }) => setSearchTerm(target.value)}
-        placeholder="Search files and series"
-        active={searchActive}
-      />
-    </Search>
-  )
+    const [searchActive, setSearchActive] = useState(false);
+    
+    return (
+        <Search {...restProps}>
+            <SearchIcon onClick={() => setSearchActive(!searchActive)}>
+                <img src="/images/icons/search.png" alt="Search" />
+            </SearchIcon>
+            <SearchInput
+                value={searchTerm}
+                onChange={({ target }) => setSearchTerm(target.value)}
+                placeholder="Search files and series"
+                active={searchActive}
+            />
+        </Search>
+    )
 }
 
-Header.Profile = ({ children, ...restProps }) => (
-  <Profile {...restProps}>{children}</Profile>
-)
-
-Header.Picture = ({ src, alt, ...restProps }) => (
-  <Picture src={`/images/users/${src}.png`} {...restProps} />
-)
-
-Header.Dropdown = ({ children, ...restProps }) => (
-  <Dropdown {...restProps}>{children}</Dropdown>
-)
-
-
-
-
-
-Header.propTypes = {
-  dontShowOnSmallViewPort: PropTypes.bool,
-  bg: PropTypes.bool,
-  src: PropTypes.string,
-  children: PropTypes.any
+Header.Logo = function HeaderLogo({ to, ...restProps }) {
+    return (
+        <ReachRouterLink to={to}>
+            <Logo {...restProps} />
+        </ReachRouterLink>
+    )
 }
 
-Header.Frame.propTypes = {
-  children: PropTypes.any.isRequired
+Header.Text = function HeaderText({ children, ...restProps }) {
+    return <Text {...restProps}>{children}</Text>;
 }
 
-Header.Group.propTypes = {
-  children: PropTypes.any.isRequired
+Header.Link = function HeaderLink({ children, ...restProps }) {
+    return <Link {...restProps}>{children}</Link>;
 }
 
-Header.Logo.propTypes = {
-  to: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
+Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
+    return <ButtonLink {...restProps}>{children}</ButtonLink>;
 }
 
-Header.ButtonLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired
+Header.Feature = function HeaderFeature({ children, ...restProps }) {
+    return <Feature {...restProps}>{children}</Feature>
 }
 
-Header.Link.propTypes = {
-  active: PropTypes.bool,
-  children: PropTypes.any.isRequired
+Header.FeatureCallOut = function HeaderFeatureCallOut({ children, ...restProps }) {
+    return <FeatureCallOut {...restProps}>{children}</FeatureCallOut>
 }
 
-Header.Text.propTypes = {
-  children: PropTypes.string.isRequired
+Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
+    return <PlayButton {...restProps}>{children}</PlayButton>
 }
 
-Header.Feature.propTypes = {
-  children: PropTypes.any.isRequired
+Header.Profile = function HeaderProfile({ children, ...restProps }) {
+    return (
+        <Profile {...restProps}>
+            {children}
+        </Profile>
+    )
 }
 
-Header.FeatureCallOut.propTypes = {
-  children: PropTypes.any.isRequired
+Header.Picture = function HeaderPicture({ src, ...restProps }) {
+    return <Picture {...restProps} src={`/images/users/${src}.png`} />;
 }
 
-Header.PlayButton.propTypes = {
-  children: PropTypes.string.isRequired
+Header.Dropdown = function HeaderDRopdown({ children, ...restProps }) {
+    return <Dropdown {...restProps}>{children}</Dropdown>;
 }
-
-Header.Search.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
-  setSearchTerm: PropTypes.func.isRequired
-}
-
-Header.Profile.propTypes = {
-  children: PropTypes.any.isRequired
-}
-
-Header.Picture.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
-}
-
-Header.Dropdown.propTypes = {
-  children: PropTypes.any.isRequired
-}
-
-export default Header

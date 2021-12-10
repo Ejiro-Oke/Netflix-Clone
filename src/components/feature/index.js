@@ -1,32 +1,14 @@
-import PropTypes from 'prop-types'
-import {
-  Container,
-  Title,
-  SubTitle
-} from './styles/feature'
+import React from 'react';
+import { Container, Title, SubTitle } from './styles/feature';
 
-const Feature = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-)
-
-Feature.Title = ({ children, ...restProps }) => (
-  <Title {...restProps}>{children}</Title>
-)
-
-Feature.SubTitle = ({ children, ...restProps }) => (
-  <SubTitle {...restProps}>{children}</SubTitle>
-)
-
-Feature.propTypes = {
-  children: PropTypes.any.isRequired
+export default function Feature({ children, ...restProps }) {
+    return <Container {...restProps}>{children}</Container>
 }
 
-Feature.Title.propTypes = {
-  children: PropTypes.string.isRequired
+Feature.Title = function FeatureTitle({ children, ...restProps }) {
+    return <Title {...restProps}>{children}</Title>
 }
 
-Feature.SubTitle.propTypes = {
-  children: PropTypes.string.isRequired
+Feature.SubTitle = function FeatureSubTitle({ children, ...restProps }) {
+    return <SubTitle {...restProps}>{children}</SubTitle>
 }
-
-export default Feature

@@ -1,50 +1,30 @@
-import PropTypes from 'prop-types'
-import {
-  Container,
-  Links,
-  Link,
-  Title,
-  Text
-} from './styles/footer'
+import React from 'react';
+import { Container, Row, Column, Link, Title, Text, Break } from './styles/footer';
 
-const Footer = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-)
-
-Footer.Links = ({ children, ...restProps }) => (
-  <Links {...restProps}>{children}</Links>
-)
-
-Footer.Link = ({ to, children, ...restProps }) => {
-  return <Link to={to} {...restProps}>{children}</Link>
+export default function Footer({ children, ...restProps }) {
+    return <Container {...restProps}>{children}</Container>
 }
 
-Footer.Title = ({ children, ...restProps }) => {
-  return <Title {...restProps}>{children}</Title>
+Footer.Row = function FooterRow({ children, ...restProps }) {
+    return <Row {...restProps}>{children}</Row>;
 }
 
-Footer.Text = ({ children, ...restProps }) => {
-  return <Text {...restProps}>{children}</Text>
+Footer.Column = function FooterColumn({ children, ...restProps }) {
+    return <Column {...restProps}>{children}</Column>;
 }
 
-Footer.propTypes = {
-  children: PropTypes.any.isRequired
+Footer.Link = function FooterLink({ children, ...restProps }) {
+    return <Link {...restProps}>{children}</Link>;
 }
 
-Footer.Links.propTypes = {
-  children: PropTypes.any.isRequired
+Footer.Title = function FooterTitle({ children, ...restProps }) {
+    return <Title {...restProps}>{children}</Title>;
 }
 
-Footer.Link.propTypes = {
-  to: PropTypes.string.isRequired
+Footer.Text = function FooterText({ children, ...restProps }) {
+    return <Text {...restProps}>{children}</Text>;
 }
 
-Footer.Title.propTypes = {
-  children: PropTypes.string.isRequired
+Footer.Break = function FooterBreak({ ...restProps }) {
+    return <Break {...restProps} />;
 }
-
-Footer.Text.propTypes = {
-  children: PropTypes.any.isRequired
-}
-
-export default Footer
